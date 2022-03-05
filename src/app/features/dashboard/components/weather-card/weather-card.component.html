@@ -4,7 +4,7 @@
     </div>
     <div class="weather-card-right">
         <div class="input-wp">
-            <input>
+            <app-input-autocomplete (optionSelected)="onSelectionChanged($event)" [options]='citiesNames'></app-input-autocomplete>
         </div>
         <div class="next-cards-wp">
             <div class="next-card-item" *ngFor="let day of fiveDaysArray">

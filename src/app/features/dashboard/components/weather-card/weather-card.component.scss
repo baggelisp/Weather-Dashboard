@@ -25,10 +25,13 @@
     height: 100%;
     margin: 10px;
     padding: 10PX;
+
 }
 
 .input-wp{
-
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .next-cards-wp{

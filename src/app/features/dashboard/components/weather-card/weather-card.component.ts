@@ -15,4 +15,12 @@ export class WeatherCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get citiesNames(): string[]{
+    return cities.map(c => c.name)
+  }
+
+  onSelectionChanged(event: any){
+    console.log(event)
+  }
+
 }
