@@ -1,1 +1,15 @@
-<p>Input</p>
+<div class="weather-card-wp">
+    <div class="weather-card-left">
+        <app-current-date-card></app-current-date-card>
+    </div>
+    <div class="weather-card-right">
+        <div class="input-wp">
+            <input>
+        </div>
+        <div class="next-cards-wp">
+            <div class="next-card-item" *ngFor="let day of fiveDaysArray">
+                <app-next-date-card></app-next-date-card>
+            </div>
+        </div>
+    </div>
+</div>

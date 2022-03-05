@@ -1,0 +1,47 @@
+.card-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    color: #1d1160!important;
+}
+
+.card-wp{
+    padding: 40px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.today {
+
+    font-size: 15px;
+    color: #1d1160!important;
+}
+
+.icon{
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    margin: 20px 0 ;
+    
+}
+.temperature{
+    font-size: 40px;
+
+    margin: 20px 0 ;
+    color: #1d1160!important;
+
+}
+
+.city{
+
+    font-size: 20px;
+    margin: 20px 0 0 ;
+    color: #1d1160!important;
+
+}
+.humidity{
+
+    color: #1d1160!important;
+}
