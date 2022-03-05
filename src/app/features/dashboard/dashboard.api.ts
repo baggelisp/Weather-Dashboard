@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class DashboardService {
+@Injectable()
+export class DashboardApi {
 
   constructor() { }
 }
