@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Options } from 'src/app/shared/components/input-autocomplete/input-autocomplete.component';
+import {cities} from '../../../../constants/cities'
 @Component({
   selector: 'app-weather-card',
   templateUrl: './weather-card.component.html',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherCardComponent implements OnInit {
 
-  fiveDaysArray = [1,2,3,4,5];
-  
   constructor() { }
+
+  fiveDaysArray = [1,2,3,4,5]
 
   ngOnInit(): void {
   }

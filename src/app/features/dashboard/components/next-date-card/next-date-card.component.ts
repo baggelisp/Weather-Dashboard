@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NextDateCardComponent implements OnInit {
   
   @Input() temperature: number = 68;
-  @Input() icon: string = 'sun';
+  @Input() icon: string = '10d';
   @Input() humidity: number = 51;
 
   constructor() { }

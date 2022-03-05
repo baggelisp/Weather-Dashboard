@@ -8,6 +8,7 @@ import { DashboardService } from './dashboard.service';
 import { DashboardApi } from './dashboard.api';
 import { CurrentDateCardComponent } from './components/current-date-card/current-date-card.component';
 import { NextDateCardComponent } from './components/next-date-card/next-date-card.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NextDateCardComponent } from './components/next-date-card/next-date-car
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    SharedModule
   ],
   providers: [
     DashboardService,
