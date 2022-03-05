@@ -35,13 +35,27 @@
 }
 
 .next-cards-wp{
-    margin-top: 80px;
+    margin-top: 20px;
     display: flex;
     justify-content: flex-start;
 }
 
 .next-card-item{
-    width: 80px;
-    border: 1px solid white;
+    width: 20%;
+    // border: 1px solid white;
     padding: 10px;
+}
+
+.fav-wp{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    button{
+        background-color: #EE82EE;
+        padding: 10px 15px;
+        border-radius: 15px;
+        font-weight: 600;
+        cursor: pointer;
+    }
 }

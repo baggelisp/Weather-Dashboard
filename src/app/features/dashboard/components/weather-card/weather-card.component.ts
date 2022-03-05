@@ -23,4 +23,8 @@ export class WeatherCardComponent implements OnInit {
     console.log(event)
   }
 
+  addToFavor(){
+    console.log('Added to favs')
+  }
+
 }
