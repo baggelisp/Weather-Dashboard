@@ -1,22 +1,32 @@
 import { Injectable } from '@angular/core';
-import { select, State, Store } from '@ngrx/store';
-import { Observable, take } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { city } from 'src/app/constants/cities';
 import { DashboardApi } from './dashboard.api';
 
 @Injectable()
 export class DashboardService {
   public readonly allCities$: Observable<city[]>;
-  public readonly selectedCity$: Observable<string>;
+  public readonly selectedCity$: Observable<city>;
+  public readonly currentWeather$: Observable<CurrentResponse>;
+  public readonly nextDaysWeather$: Observable<NextDateResponse[]>;
+
   
   constructor(private store: Store<any>, private api: DashboardApi) {
     const state$ = store.select('dashboardReducer');
     this.allCities$  = state$.pipe(select(state => state['allCities']));
     this.selectedCity$  = state$.pipe(select(state => state['selectedCity']));
+    this.currentWeather$  = state$.pipe(select(state => state['currentWeather']));
+    this.nextDaysWeather$  = state$.pipe(select(state => state['nextDaysWeather']));
+
    }
 
   setallCities(cities: city[]) {
     this.store.dispatch({ type: `SET_ALL_CITIES`, payload: [...cities] });    
+
+    this.currentWeather$.subscribe(a => {
+      console.log(a)
+    })
   }
 
   setSelectedCounty(cityName: string) {
@@ -35,9 +45,35 @@ export class DashboardService {
   }
 
   getWeather(city: city){
-    this.api.getWeather(city).subscribe( (w:any) => {
-      console.log(w)
+    this.api.getWeather(city).subscribe( (response: GetWeatherResponse) => {
+      console.log(response)
+      this.store.dispatch({ type: `SET_WEATHER`, payload: response });  
     })
   }
 
+}
+
+
+// INTERFACES
+export interface CurrentResponse {
+  temp: number;
+  humidity: number;
+  icon: string;
+  title: string;
+  windSpeed: number
+}
+
+export interface NextDateResponse {
+  date: string;
+  tempMin: number;
+  tempMax: number;
+  humidity: number;
+  icon: string;
+  title: string;
+  windSpeed: number
+}
+export interface GetWeatherResponse {
+  cityName: string;
+  current: CurrentResponse;
+  nextDates: NextDateResponse[];
 }

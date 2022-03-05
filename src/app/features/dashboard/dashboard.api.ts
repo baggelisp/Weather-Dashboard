@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { ApiResponseRootObject } from './OpenWeatherInterfaces';
 import { environment } from 'src/environments/environment.prod';
+import { CurrentResponse, GetWeatherResponse, NextDateResponse } from './dashboard.service';
 
 @Injectable()
 export class DashboardApi {
@@ -34,6 +35,7 @@ export class DashboardApi {
         nextDaysObj.push({...nextDayObj})
       });
       return {
+        cityName: city.name,
         current: {...currentObj},
         nextDates: [...nextDaysObj]
       }
@@ -42,24 +44,4 @@ export class DashboardApi {
 }
 
 
-interface CurrentResponse {
-  temp: number;
-  humidity: number;
-  icon: string;
-  title: string;
-  windSpeed: number
-}
 
-interface NextDateResponse {
-  date: string;
-  tempMin: number;
-  tempMax: number;
-  humidity: number;
-  icon: string;
-  title: string;
-  windSpeed: number
-}
-export interface GetWeatherResponse {
-  current: CurrentResponse;
-  nextDates: NextDateResponse[];
-}

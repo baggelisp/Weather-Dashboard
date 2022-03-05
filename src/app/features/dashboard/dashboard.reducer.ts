@@ -1,13 +1,18 @@
 import { city } from "src/app/constants/cities";
+import { CurrentResponse, NextDateResponse } from "./dashboard.service";
 
 interface initialStateInt {
   allCities: city[];
   selectedCity: city | any;
+  currentWeather: CurrentResponse | any;
+  nextDaysWeather: NextDateResponse[];
 }
 
 const initialState: initialStateInt ={
   allCities: [],
   selectedCity: {},
+  currentWeather: {},
+  nextDaysWeather: []
 };
 
 interface ActionWithPayload {
@@ -27,6 +32,12 @@ export function dashboardReducer(state = initialState, { type, payload }: Action
       return {
           ...state,
           selectedCity: payload
+        }
+    case 'SET_WEATHER':
+      return {
+          ...state,
+          currentWeather: payload.current,
+          nextDaysWeather: payload.nextDates
         }
     default:
       return state;

@@ -11,6 +11,7 @@ export class CurrentDateCardComponent implements OnInit {
   @Input() icon: string = '10d';
   @Input() city: string = 'New York';
   @Input() humidity: number = 51;
+  @Input() windSpeed: number = 51;
 
   constructor() { }
 
