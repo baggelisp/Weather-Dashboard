@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Options } from 'src/app/shared/components/input-autocomplete/input-autocomplete.component';
 import {cities} from '../../../../constants/cities'
+import { DashboardService } from '../../dashboard.service';
 @Component({
   selector: 'app-weather-card',
   templateUrl: './weather-card.component.html',
@@ -8,7 +9,7 @@ import {cities} from '../../../../constants/cities'
 })
 export class WeatherCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dashboardService: DashboardService) { }
 
   fiveDaysArray = [1,2,3,4,5]
 
@@ -20,11 +21,11 @@ export class WeatherCardComponent implements OnInit {
   }
 
   onSelectionChanged(event: any){
-    console.log(event)
+    this.dashboardService.setSelectedCounty(event)
   }
 
   addToFavor(){
-    console.log('Added to favs')
+    
   }
 
 }

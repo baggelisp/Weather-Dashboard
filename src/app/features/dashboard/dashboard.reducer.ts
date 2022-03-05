@@ -1,6 +1,7 @@
 
 const initialState ={
-  toDoList: []
+  allCountries: [],
+  selectedCountry: '',
 };
 
 interface ActionWithPayload {
@@ -11,12 +12,16 @@ interface ActionWithPayload {
 export function dashboardReducer(state = initialState, { type, payload }: ActionWithPayload) {
 
   switch (type) {
-    case 'SET_TODO_LIST':
-        const newState = {
+    case 'SET_ALL_COUNTRIES':
+      return {
             ...state,
-            toDoList: [...payload]
+            allCountries: [...payload]
           }
-      return newState;
+    case 'SET_SELECTED_COUNTRY':
+      return {
+          ...state,
+          selectedCountry: payload
+        }
     default:
       return state;
   }
