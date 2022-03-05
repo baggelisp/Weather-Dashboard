@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { city } from 'src/app/constants/cities';
 import { DashboardApi } from './dashboard.api';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Injectable()
 export class DashboardService {
@@ -12,7 +13,9 @@ export class DashboardService {
   public readonly nextDaysWeather$: Observable<NextDateResponse[]>;
 
   
-  constructor(private store: Store<any>, private api: DashboardApi) {
+  constructor(private store: Store<any>, 
+    private spinner: NgxSpinnerService,
+    private api: DashboardApi) {
     const state$ = store.select('dashboardReducer');
     this.allCities$  = state$.pipe(select(state => state['allCities']));
     this.selectedCity$  = state$.pipe(select(state => state['selectedCity']));
@@ -45,9 +48,11 @@ export class DashboardService {
   }
 
   getWeather(city: city){
+    this.spinner.show();
     this.api.getWeather(city).subscribe( (response: GetWeatherResponse) => {
       console.log(response)
       this.store.dispatch({ type: `SET_WEATHER`, payload: response });  
+      this.spinner.hide();
     })
   }
 
