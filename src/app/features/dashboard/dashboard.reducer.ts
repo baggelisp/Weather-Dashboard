@@ -1,7 +1,13 @@
+import { city } from "src/app/constants/cities";
 
-const initialState ={
-  allCountries: [],
-  selectedCountry: '',
+interface initialStateInt {
+  allCities: city[];
+  selectedCity: city | any;
+}
+
+const initialState: initialStateInt ={
+  allCities: [],
+  selectedCity: {},
 };
 
 interface ActionWithPayload {
@@ -12,15 +18,15 @@ interface ActionWithPayload {
 export function dashboardReducer(state = initialState, { type, payload }: ActionWithPayload) {
 
   switch (type) {
-    case 'SET_ALL_COUNTRIES':
+    case 'SET_ALL_CITIES':
       return {
             ...state,
-            allCountries: [...payload]
+            allCities: [...payload]
           }
-    case 'SET_SELECTED_COUNTRY':
+    case 'SET_SELECTED_CITY':
       return {
           ...state,
-          selectedCountry: payload
+          selectedCity: payload
         }
     default:
       return state;

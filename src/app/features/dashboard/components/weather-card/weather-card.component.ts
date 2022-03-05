@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Options } from 'src/app/shared/components/input-autocomplete/input-autocomplete.component';
 import {cities} from '../../../../constants/cities'
 import { DashboardService } from '../../dashboard.service';
 @Component({

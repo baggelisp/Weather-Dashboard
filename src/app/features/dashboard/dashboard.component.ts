@@ -11,7 +11,8 @@ export class DashboardComponent implements OnInit {
   constructor(public service: DashboardService) { }
 
   ngOnInit(): void {
-    this.service.setAllCountries(cities);
+    this.service.setallCities(cities);
+    this.service.setSelectedCounty('Athens');
   }
 
 }
