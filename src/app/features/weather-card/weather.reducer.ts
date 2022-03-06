@@ -1,19 +1,25 @@
+import { cities } from "cities";
 import { city } from "src/app/constants/cities";
 import { CurrentResponse, NextDateResponse } from "./weather.service";
 
 interface initialStateInt {
-  allCities: city[];
-  selectedCity: city | any;
-  currentWeather: CurrentResponse | any;
-  nextDaysWeather: NextDateResponse[];
+  [currentCityName: string]: CurrentCityWeather;
 }
 
-const initialState: initialStateInt ={
+interface CurrentCityWeather {
+  currentWeather: CurrentResponse | any;
+  nextDaysWeather: NextDateResponse[];
+  allCities: city[];
+  selectedCity: city | any;
+}
+
+let innerObj = {
+  currentWeather: {},
+  nextDaysWeather: [],
   allCities: [],
   selectedCity: {},
-  currentWeather: {},
-  nextDaysWeather: []
-};
+}
+const initialState: initialStateInt =cities.map(c=> c.name).reduce((acc:any,curr:any)=> (acc[curr]={...innerObj},acc),{});
 
 interface ActionWithPayload {
     payload?: any;
@@ -21,24 +27,32 @@ interface ActionWithPayload {
   }
 
 export function weatherReducer(state = initialState, { type, payload }: ActionWithPayload) {
-
   switch (type) {
     case 'SET_ALL_CITIES':
       return {
-            ...state,
-            allCities: [...payload]
-          }
+        ...state,
+        [payload.id]: {
+          ...state[payload.id],
+          allCities: [...payload.allCities]
+        }
+      }
     case 'SET_SELECTED_CITY':
       return {
-          ...state,
-          selectedCity: payload
+        ...state,
+        [payload.id]: {
+          ...state[payload.id],
+          selectedCity: {...payload.selectedCity}
         }
+      }
     case 'SET_WEATHER':
       return {
-          ...state,
-          currentWeather: payload.current,
-          nextDaysWeather: payload.nextDates
+        ...state,
+        [payload.id]: {
+          ...state[payload.id],
+          currentWeather: {...payload.current},
+          nextDaysWeather: [...payload.nextDates]
         }
+      }
     default:
       return state;
   }

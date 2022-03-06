@@ -1,62 +1,58 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { cities, city } from 'src/app/constants/cities';
 import { NgxSpinnerService } from "ngx-spinner";
 import { WeatherApi } from './weather.api';
 
 @Injectable()
 export class WeatherService {
+  state$: Observable<any>;
 
-  public readonly allCities$: Observable<city[]>;
-  public readonly selectedCity$: Observable<city>;
-  public readonly currentWeather$: Observable<CurrentResponse>;
-  public readonly nextDaysWeather$: Observable<NextDateResponse[]>;
-
-  
   constructor(private store: Store<any>, 
     private spinner: NgxSpinnerService,
     private api: WeatherApi) {
-    const state$ = store.select('weatherReducer');
-    this.allCities$  = state$.pipe(select(state => state['allCities']));
-    this.selectedCity$  = state$.pipe(select(state => state['selectedCity']));
-    this.currentWeather$  = state$.pipe(select(state => state['currentWeather']));
-    this.nextDaysWeather$  = state$.pipe(select(state => state['nextDaysWeather']));
-
+    this.state$ = store.select('weatherReducer');
     this.setallCities(cities);
-   }
+  }
+
+  getAllCitiesObj(cityName: string){
+    return this.state$.pipe(select(state => state[cityName]['allCities']));
+  }
+  getSelectedCityObj(cityName: string){
+    return this.state$.pipe(select(state => state[cityName]['selectedCity']));
+  }
+  getCurrentWeatherObj(cityName: string){
+    return this.state$.pipe(select(state => state[cityName]['currentWeather']));
+  }
+  getNextDaysWeatherObj(cityName: string){
+    return this.state$.pipe(select(state => state[cityName]['nextDaysWeather']));
+  }
+  
 
   setallCities(cities: city[]) {
-    this.store.dispatch({ type: `SET_ALL_CITIES`, payload: [...cities] });    
+    this.store.dispatch({ type: `SET_ALL_CITIES`, payload:{allCities: [...cities], id: cities[0].name}  }); 
   }
 
   setSelectedCounty(cityName: string) {
-    const allCities: city[] = this.getAllCities();
+    const allCities: city[] = cities;
     const selectedCity: city | any = allCities.find( c => c.name == cityName);
-    this.store.dispatch({ type: `SET_SELECTED_CITY`, payload: selectedCity });  
+    this.store.dispatch({ type: `SET_SELECTED_CITY`, payload:{selectedCity: {...selectedCity}, id: cityName}  });    
     this.getWeather(selectedCity); 
   }
 
   getAllCities(){
-    let cities: city[] = [];
-    this.allCities$.subscribe( c => {
-      cities = [...c]
-    });
     return cities;
   }
 
-  getSelectedCity(): city{
-    let city: city = this.getAllCities()[0] || null;;
-    this.selectedCity$.subscribe( c => {
-      city = {...c}
-    });
-    return {...city};
+  getCityFromName(cityName: string): city{
+    return cities.find( c => c.name == cityName) || cities[0];
   }
 
   getWeather(city: city){
     this.spinner.show();
     this.api.getWeather(city).subscribe( (response: GetWeatherResponse) => {
-      this.store.dispatch({ type: `SET_WEATHER`, payload: response });  
+      this.store.dispatch({ type: `SET_WEATHER`, payload:{current: {...response.current}, nextDates: [...response.nextDates], id: city.name}  });    
       this.spinner.hide();
     })
   }

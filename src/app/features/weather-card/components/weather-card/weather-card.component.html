@@ -2,11 +2,11 @@
     <div class="weather-card-wp">
         <div class="weather-card-left">
             <app-current-date-card
-                [temperature]='(weatherService.currentWeather$ | async)!.temp'
-                [icon]='(weatherService.currentWeather$ | async)!.icon'
-                [humidity]='(weatherService.currentWeather$ | async)!.humidity'
-                [city]='(weatherService.selectedCity$ | async)!.name'
-                [windSpeed]='(weatherService.currentWeather$ | async)!.windSpeed'
+                [temperature]='(weatherService.getCurrentWeatherObj(inputCityName)| async)!.temp'
+                [icon]='(weatherService.getCurrentWeatherObj(inputCityName)| async)!.icon'
+                [humidity]='(weatherService.getCurrentWeatherObj(inputCityName)| async)!.humidity'
+                [city]='inputCityName'
+                [windSpeed]='(weatherService.getCurrentWeatherObj(inputCityName)| async)!.windSpeed'
     
             ></app-current-date-card>
         </div>
@@ -15,7 +15,7 @@
                 <app-input-autocomplete (optionSelected)="onSelectionChanged($event)" [options]='citiesNames'></app-input-autocomplete>
             </div>
             <div class="next-cards-wp">
-                <div class="next-card-item" *ngFor="let day of (weatherService.nextDaysWeather$ | async)">
+                <div class="next-card-item" *ngFor="let day of (weatherService.getNextDaysWeatherObj(inputCityName) | async)">
                     <app-next-date-card
                     [dateName]='day.date'
                     [humidity]='day.humidity'
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="fav-wp">
-                 <button (click)='addToFavor()'>{{favoritesService.isCityInFavorites(selectedCityName) ? "Remove from" : "Add to"}} Favorites</button>
+                 <button (click)='addToFavor()'>{{favoritesService.isCityInFavorites(inputCityName) ? "Remove from" : "Add to"}} Favorites</button>
             </div>
         </div>
     </div>

@@ -14,7 +14,6 @@ export class FavoritesComponent implements OnInit {
 
   ngOnInit(): void {
     this.favCities = this.favoritesService.getfavoriteCities();
-    console.log(this.favCities)
   }
 
 }

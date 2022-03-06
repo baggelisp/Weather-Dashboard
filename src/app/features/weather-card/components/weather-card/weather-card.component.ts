@@ -22,6 +22,7 @@ export class WeatherCardComponent implements OnInit {
       this.weatherService.setSelectedCounty(this.inputCityName);
     } else {
       // Default selected city
+      this.inputCityName = "Athens"
       this.weatherService.setSelectedCounty("Athens");
     }
   }
@@ -30,16 +31,13 @@ export class WeatherCardComponent implements OnInit {
     return cities.map(c => c.name)
   }
 
-  get selectedCityName(): string {
-    return this.weatherService.getSelectedCity()?.name;
-  } 
-
   onSelectionChanged(event: any){
+    this.inputCityName = event;
     this.weatherService.setSelectedCounty(event)
   }
 
   addToFavor(){
-    const selectedCity = this.weatherService.getSelectedCity();
+    const selectedCity = this.weatherService.getCityFromName(this.inputCityName);
     this.weatherService.addToFavorite(selectedCity);
   }
 
