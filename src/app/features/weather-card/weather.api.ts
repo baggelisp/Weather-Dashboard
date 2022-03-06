@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { city } from 'src/app/constants/cities';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { CurrentResponse, GetWeatherResponse, NextDateResponse } from './weather.service';
 import { ApiResponseRootObject } from './models/OpenWeatherInterfaces';
@@ -41,6 +41,14 @@ export class WeatherApi {
       }
     }));
   }
+
+  addToFavorite(selectedCity: city): Observable<string[]> {
+    let favCities: any[] = JSON.parse(localStorage.getItem("cities") || '[]');
+    favCities.indexOf(selectedCity.name) === -1 ? favCities.push(selectedCity.name) : favCities = favCities.filter(city=> city != selectedCity.name);
+    localStorage.setItem("cities", JSON.stringify(favCities));
+    return of(favCities)
+  }
+
 }
 
 

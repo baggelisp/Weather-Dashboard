@@ -7,6 +7,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { WeatherCardComponent } from './components/weather-card/weather-card.component';
 import { CurrentDateCardComponent } from './components/current-date-card/current-date-card.component';
 import { NextDateCardComponent } from './components/next-date-card/next-date-card.component';
+import { FavoritesService } from '../favorites/favorites.service';
 
 
 
@@ -23,7 +24,8 @@ import { NextDateCardComponent } from './components/next-date-card/next-date-car
   ],
   providers: [
     WeatherApi,
-    WeatherService
+    WeatherService,
+    FavoritesService
   ],
   exports: [
     WeatherCardComponent

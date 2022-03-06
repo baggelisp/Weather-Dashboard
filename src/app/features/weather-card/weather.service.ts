@@ -7,6 +7,7 @@ import { WeatherApi } from './weather.api';
 
 @Injectable()
 export class WeatherService {
+
   public readonly allCities$: Observable<city[]>;
   public readonly selectedCity$: Observable<city>;
   public readonly currentWeather$: Observable<CurrentResponse>;
@@ -28,10 +29,6 @@ export class WeatherService {
 
   setallCities(cities: city[]) {
     this.store.dispatch({ type: `SET_ALL_CITIES`, payload: [...cities] });    
-
-    this.currentWeather$.subscribe(a => {
-      console.log(a)
-    })
   }
 
   setSelectedCounty(cityName: string) {
@@ -49,15 +46,27 @@ export class WeatherService {
     return cities;
   }
 
+  getSelectedCity(): city{
+    let city: city = this.getAllCities()[0] || null;;
+    this.selectedCity$.subscribe( c => {
+      city = {...c}
+    });
+    return {...city};
+  }
+
   getWeather(city: city){
     this.spinner.show();
     this.api.getWeather(city).subscribe( (response: GetWeatherResponse) => {
-      console.log(response)
       this.store.dispatch({ type: `SET_WEATHER`, payload: response });  
       this.spinner.hide();
     })
   }
 
+  addToFavorite(selectedCity: city) {
+    this.api.addToFavorite(selectedCity).subscribe( (response: string[]) => {
+      this.store.dispatch({ type: `SET_FAV_CITIES`, payload: response });  
+    })
+  }
 }
 
 

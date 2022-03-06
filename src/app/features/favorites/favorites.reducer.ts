@@ -1,7 +1,9 @@
 interface initialStateInt {
+  favoriteCities: string[];
 }
 
 const initialState: initialStateInt ={
+  favoriteCities: []
 };
 
 interface ActionWithPayload {
@@ -12,6 +14,11 @@ interface ActionWithPayload {
 export function favoritesReducer(state = initialState, { type, payload }: ActionWithPayload) {
 
   switch (type) {
+    case 'SET_FAV_CITIES':
+      return {
+            ...state,
+            favoriteCities: [...payload]
+          }
     default:
       return state;
   }
