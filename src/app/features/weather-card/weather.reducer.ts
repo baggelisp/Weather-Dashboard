@@ -1,5 +1,4 @@
-import { cities } from "cities";
-import { city } from "src/app/constants/cities";
+import { cities, city } from "src/app/constants/cities";
 import { CurrentResponse, NextDateResponse } from "./weather.service";
 
 interface initialStateInt {
