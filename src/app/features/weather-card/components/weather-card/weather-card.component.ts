@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {cities} from '../../../../constants/cities'
-import { DashboardService } from '../../dashboard.service';
+import { WeatherService } from '../../weather.service';
+
 @Component({
   selector: 'app-weather-card',
   templateUrl: './weather-card.component.html',
@@ -8,7 +9,7 @@ import { DashboardService } from '../../dashboard.service';
 })
 export class WeatherCardComponent implements OnInit {
 
-  constructor(public dashboardService: DashboardService) { }
+  constructor(public weatherService: WeatherService) { }
 
   fiveDaysArray = [1,2,3,4,5]
 
@@ -20,7 +21,7 @@ export class WeatherCardComponent implements OnInit {
   }
 
   onSelectionChanged(event: any){
-    this.dashboardService.setSelectedCounty(event)
+    this.weatherService.setSelectedCounty(event)
   }
 
   addToFavor(){

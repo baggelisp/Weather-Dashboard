@@ -1,11 +1,11 @@
 <div class="weather-card-wp">
     <div class="weather-card-left">
         <app-current-date-card
-            [temperature]='(dashboardService.currentWeather$ | async)!.temp'
-            [icon]='(dashboardService.currentWeather$ | async)!.icon'
-            [humidity]='(dashboardService.currentWeather$ | async)!.humidity'
-            [city]='(dashboardService.selectedCity$ | async)!.name'
-            [windSpeed]='(dashboardService.currentWeather$ | async)!.windSpeed'
+            [temperature]='(weatherService.currentWeather$ | async)!.temp'
+            [icon]='(weatherService.currentWeather$ | async)!.icon'
+            [humidity]='(weatherService.currentWeather$ | async)!.humidity'
+            [city]='(weatherService.selectedCity$ | async)!.name'
+            [windSpeed]='(weatherService.currentWeather$ | async)!.windSpeed'
 
         ></app-current-date-card>
     </div>

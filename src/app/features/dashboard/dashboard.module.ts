@@ -1,29 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { WeatherCardComponent } from './components/weather-card/weather-card.component';
 import { DashboardService } from './dashboard.service';
 import { DashboardApi } from './dashboard.api';
-import { CurrentDateCardComponent } from './components/current-date-card/current-date-card.component';
-import { NextDateCardComponent } from './components/next-date-card/next-date-card.component';
+import { WeatherCardModule } from '../weather-card/weather-card.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    WeatherCardComponent,
-    CurrentDateCardComponent,
-    NextDateCardComponent
+    DashboardComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    NgxSpinnerModule
+    WeatherCardModule
   ],
   providers: [
     DashboardService,
