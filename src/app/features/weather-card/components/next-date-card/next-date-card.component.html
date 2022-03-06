@@ -1,17 +1,20 @@
 <div class="card-container">
     <div class="card-wp">
         <div class="today text-center">
-            Friday
+            {{dateName}}
         </div>
         <div class="icon">
             <img src="http://openweathermap.org/img/wn/{{icon}}@2x.png" alt="">
         </div>
         <div class="temperature text-center">
-            {{temperature}}°F
+            Max: {{tempMax}}°F <br>
+            Min: {{tempMin}}°F
         </div>
         <div class="humidity text-center">
-            Humidity: {{humidity}}%
+            H: {{humidity}}%
         </div>
-        
+        <div class="humidity text-center">
+            W: {{windSpeed}}MPH
+        </div>
     </div>
 </div>

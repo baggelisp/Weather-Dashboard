@@ -11,8 +11,6 @@ export class WeatherCardComponent implements OnInit {
 
   constructor(public weatherService: WeatherService) { }
 
-  fiveDaysArray = [1,2,3,4,5]
-
   ngOnInit(): void {
   }
 
