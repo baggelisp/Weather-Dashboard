@@ -1,0 +1,17 @@
+.top-bar-container{
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    background-color: #1d1160;
+    a{
+        color: white;
+        text-decoration: none;
+    }
+    a.selected{
+        color: #EE82EE;
+    }
+    a:hover{
+        color: #ff20ff;
+        cursor: pointer;
+    }
+}

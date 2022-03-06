@@ -12,4 +12,9 @@ export class TopBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+  isRouteSelected(route: string) : boolean {
+    return window.location.pathname == route
+  }
+  
 }

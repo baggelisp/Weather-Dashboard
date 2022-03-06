@@ -10,6 +10,10 @@ const routes: Routes = [
       {
         path: '',
       loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
+        path: 'favorites',
+      loadChildren: () => import('./features/favorites/favorites.module').then(m => m.FavoritesModule)
       }
     ]
   }

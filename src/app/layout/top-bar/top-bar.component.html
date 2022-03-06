@@ -1,1 +1,9 @@
-<p>top-bar works!</p>
+<div class="top-bar-container">
+    <div class="align-center m-x-10px">
+        <a [ngClass]="{'selected': isRouteSelected('/')}" routerLink="/">Dashboard</a>  
+    </div>
+    <div class="align-center m-x-10px">
+        <a [ngClass]="{'selected': isRouteSelected('/favorites')}" routerLink="/favorites">Favorites</a>  
+    </div>
+
+</div>
