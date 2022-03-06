@@ -11,7 +11,7 @@
             ></app-current-date-card>
         </div>
         <div class="weather-card-right">
-            <div class="input-wp">
+            <div class="input-wp" *ngIf='hasSearch'>
                 <app-input-autocomplete (optionSelected)="onSelectionChanged($event)" [options]='citiesNames'></app-input-autocomplete>
             </div>
             <div class="next-cards-wp">
@@ -24,9 +24,6 @@
                     [tempMin]='day.tempMin'
                     [windSpeed]='day.windSpeed'
                     [title]='day.title'
-    
-    
-                    
                     ></app-next-date-card>
                 </div>
             </div>

@@ -24,7 +24,6 @@ export class WeatherService {
     this.nextDaysWeather$  = state$.pipe(select(state => state['nextDaysWeather']));
 
     this.setallCities(cities);
-    this.setSelectedCounty('Athens');
    }
 
   setallCities(cities: city[]) {

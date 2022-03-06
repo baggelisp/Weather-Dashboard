@@ -1,6 +1,11 @@
 
 <div class="favorite-container">
-    <div class="weather-card-container">
-        <!-- <app-weather-card></app-weather-card> -->
-    </div>
+    <!-- <app-weather-card></app-weather-card> -->
+    <ng-container *ngFor="let favCity of favCities; index as i;"> 
+        <app-weather-card
+        [hasSearch]='false'
+        [inputCityName]='favCity'>
+        </app-weather-card> 
+    </ng-container>
+
 </div>

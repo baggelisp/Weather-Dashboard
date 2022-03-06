@@ -5,6 +5,7 @@ import { FavoritesRoutingModule } from './favorites-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FavoritesComponent } from './favorites.component';
 import { FavoritesService } from './favorites.service';
+import { WeatherCardModule } from '../weather-card/weather-card.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FavoritesService } from './favorites.service';
   imports: [
     CommonModule,
     SharedModule,
-    FavoritesRoutingModule
+    FavoritesRoutingModule,
+    WeatherCardModule
   ],
   providers: [
     FavoritesService

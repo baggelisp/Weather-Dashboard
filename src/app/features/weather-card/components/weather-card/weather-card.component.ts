@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FavoritesService } from 'src/app/features/favorites/favorites.service';
 import {cities} from '../../../../constants/cities'
 import { WeatherService } from '../../weather.service';
@@ -10,10 +10,20 @@ import { WeatherService } from '../../weather.service';
 })
 export class WeatherCardComponent implements OnInit {
 
+  @Input() hasSearch: boolean = true;
+  @Input() inputCityName: string = '';
+
+
   constructor(public weatherService: WeatherService,
     public favoritesService: FavoritesService) { }
 
   ngOnInit(): void {
+    if (this.inputCityName != '') {
+      this.weatherService.setSelectedCounty(this.inputCityName);
+    } else {
+      // Default selected city
+      this.weatherService.setSelectedCounty("Athens");
+    }
   }
 
   get citiesNames(): string[]{

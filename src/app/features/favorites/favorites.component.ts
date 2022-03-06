@@ -8,9 +8,13 @@ import { FavoritesService } from './favorites.service';
 })
 export class FavoritesComponent implements OnInit {
 
+  favCities: string[] = [];
+
   constructor(public favoritesService: FavoritesService) { }
 
   ngOnInit(): void {
+    this.favCities = this.favoritesService.getfavoriteCities();
+    console.log(this.favCities)
   }
 
 }
